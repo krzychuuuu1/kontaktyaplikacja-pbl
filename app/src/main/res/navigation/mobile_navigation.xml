@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_kontakty">
+
+    <fragment
+        android:id="@+id/navigation_wybieranie"
+        android:name="com.example.kontaktownia.ui.home.HomeFragment"
+        android:label="@string/Wybieranie"
+        tools:layout="@layout/fragment_wybieranie" />
+
+    <fragment
+        android:id="@+id/navigation_kontakty"
+        android:name="com.example.kontaktownia.ui.ItemFragment"
+        android:label="Lista"
+        tools:layout="@layout/fragment_item_list" />
+
+    <fragment
+        android:id="@+id/navigation_dodajkontakt"
+        android:name="com.example.kontaktownia.ui.notifications.NotificationsFragment"
+        android:label="@string/menudodajkontakt"
+         />
+</navigation>
