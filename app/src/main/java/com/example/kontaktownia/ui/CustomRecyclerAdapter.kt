@@ -1,17 +1,12 @@
 package com.example.kontaktownia.ui
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
-
-import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent.kontakt
+import androidx.recyclerview.widget.RecyclerView
 import com.example.kontaktownia.databinding.FragmentItemBinding
+import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent.kontakt
 
-/**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
- */
 class CustomRecyclerAdapter(
     private val values: List<kontakt>
 ) : RecyclerView.Adapter<CustomRecyclerAdapter.ViewHolder>() {

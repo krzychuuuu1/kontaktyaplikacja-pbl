@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_wybieranie"
-        android:name="com.example.kontaktownia.ui.home.WybieranieFragment"
+        android:name="com.example.kontaktownia.ui.wybieranie.WybieranieFragment"
         android:label="@string/Wybieranie"
         tools:layout="@layout/fragment_wybieranie" />
 
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_dodajkontakt"
-        android:name="com.example.kontaktownia.ui.notifications.NotificationsFragment"
+        android:name="com.example.kontaktownia.ui.dodajkontakt.NotificationsFragment"
         android:label="@string/menudodajkontakt"
          />
 </navigation>

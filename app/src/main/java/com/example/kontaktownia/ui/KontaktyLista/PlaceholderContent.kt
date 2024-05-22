@@ -1,8 +1,6 @@
 package com.example.kontaktownia.ui.KontaktyLista
 
 import java.io.File
-import java.util.ArrayList
-import java.util.HashMap
 
 /**
  * Helper class for providing sample content for user interfaces created by

@@ -1,4 +1,4 @@
-package com.example.kontaktownia.ui.notifications
+package com.example.kontaktownia.ui.dodajkontakt
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.kontaktownia.sluchacz
 import com.example.kontaktownia.databinding.FragmentDodajBinding
 import com.example.kontaktownia.sluchacz
 

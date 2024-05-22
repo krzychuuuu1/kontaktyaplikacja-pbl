@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:fadingEdge="none"
-    tools:context=".ui.home.WybieranieFragment">
+    tools:context=".ui.wybieranie.WybieranieFragment">
 
     <TextView
         android:id="@+id/editTextNumber"
@@ -84,16 +84,17 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="60dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="4dp"
+        android:background="#4CAF50"
         android:scaleX="1.5"
         android:src="@android:drawable/ic_menu_call"
-        app:layout_constraintStart_toEndOf="@+id/button11"
-        app:layout_constraintTop_toBottomOf="@+id/button9"
         android:strokeWidth="30"
-        android:strokeColor="@color/black"/>
+        android:strokeColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/button11"
+        app:layout_constraintTop_toBottomOf="@+id/button9" />
 
     <Button
         android:id="@+id/button7"

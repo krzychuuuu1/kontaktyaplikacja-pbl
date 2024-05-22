@@ -1,71 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <Button
+        android:id="@+id/dodajkontakt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="161dp"
+        android:layout_marginBottom="117dp"
+        android:text="@string/dodaj_kontakt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/telefon" />
 
-        <Button
-            android:id="@+id/dodajkontakt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="156dp"
-            android:text="@string/dodaj_kontakt"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+    <EditText
+        android:id="@+id/imie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="178dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="58dp"
+        android:ems="10"
+        android:hint="@string/dodaj_kontakt_imie"
+        android:inputType="text|textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/nazwisko"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.99"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
-        <EditText
-            android:id="@+id/imie"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="101dp"
-            android:layout_marginEnd="101dp"
-            android:ems="10"
-            android:hint="@string/dodaj_kontakt_imie"
-            android:inputType="text|textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/nazwisko"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.755" />
+    <EditText
+        android:id="@+id/nazwisko"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="80dp"
+        android:ems="10"
+        android:hint="@string/dodaj_kontakt_nazwisko"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/telefon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imie" />
 
-        <EditText
-            android:id="@+id/nazwisko"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginEnd="101dp"
-            android:layout_marginBottom="80dp"
-            android:ems="10"
-            android:hint="@string/dodaj_kontakt_nazwisko"
-            android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/telefon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <EditText
-            android:id="@+id/telefon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="76dp"
-            android:ems="10"
-            android:hint="@string/dodaj_kontakt_telefon"
-            android:inputType="number"
-            android:numeric="integer"
-            android:phoneNumber="true"
-            app:layout_constraintBottom_toTopOf="@+id/dodajkontakt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/telefon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="51dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="47dp"
+        android:ems="10"
+        android:hint="@string/dodaj_kontakt_telefon"
+        android:inputType="number"
+        android:numeric="integer"
+        android:phoneNumber="true"
+        app:layout_constraintBottom_toTopOf="@+id/dodajkontakt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nazwisko" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
