@@ -1,8 +1,14 @@
 package com.example.kontaktownia
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent.kontakt
 import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent.wczytajkontakty
 import java.io.File
@@ -92,4 +98,24 @@ fun zbierzdane(imie: EditText, nazwisko: EditText, telefon: EditText): kontakt? 
         return null
     }
     return kontakt(imied, nazwiskod, telefond)
+}
+@SuppressLint("SetTextI18n")
+fun cyfra(button: List<Button>, text: TextView) {
+    button.forEach{
+        it.setOnClickListener {
+            val to = it as Button
+            val tekst = to.text.toString()
+            text.setText(text.text.toString()+tekst)
+        }
+    }
+}
+fun dzwon(button: ImageButton, text: TextView) {
+    button.setOnClickListener {
+
+        val numer = text.text.toString()
+        val intent = Intent(Intent.ACTION_CALL);
+        intent.data = Uri.parse("tel:${numer}")
+        startActivity(button.context,intent,null)
+
+    }
 }

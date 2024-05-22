@@ -31,7 +31,7 @@ object PlaceholderContent {
             error("Nie da sie odczytac pliku")
         }
         if (plik.length() == 0L) {
-            error("Plik jest pusty")
+            println("Plik jest pusty")
 
         }
 
