@@ -10,7 +10,7 @@ import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent.kontakt
 class AdapterWyswietlaniaListy(
     private val values: List<kontakt>
 ) : RecyclerView.Adapter<AdapterWyswietlaniaListy.ViewHolder>() {
-    val wartosci : MutableList<kontakt> = values.toMutableList()
+    val wartosci : MutableList<kontakt> = values.toMutableList().toSortedSet(compareBy { it.imie }).toMutableList()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,7 +27,7 @@ class AdapterWyswietlaniaListy(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = wartosci[position]
-        val nazwa = item.imie + item.nazwisko
+        val nazwa = item.imie + " " + item.nazwisko
         holder.contentView.text = nazwa
         holder.telefonView.text = item.telefon
     }

@@ -10,7 +10,7 @@ import java.io.File
  */
 object PlaceholderContent {
 
-    data class kontakt(val imie: String, val nazwisko: String, val telefon: String)
+    data class kontakt(val imie: String, val nazwisko: String, val telefon: String, val email: String)
 
     fun wczytajkontakty(sciezka: String): MutableList<kontakt> { //Funkcja wczytuje kontakty z pliku
         val plik = File(sciezka) //Otwieranie pliku
@@ -38,9 +38,9 @@ object PlaceholderContent {
                 println("jestem tu")
 
                 plik.forEachLine { //Wczytywanie linijek z pliku
-                    val (imie, nazwisko, telefon) = it.split(",", limit = 3)
-                    kontakty.add(kontakt(imie, nazwisko, telefon)) //Dodawanie kontaktow do listy
-                    println("${imie}, ${nazwisko}, ${telefon}") //Wypisanie kontaktow do konsoli
+                    val (imie, nazwisko, telefon, email) = it.split(",", limit = 4)
+                    kontakty.add(kontakt(imie, nazwisko, telefon, email)) //Dodawanie kontaktow do listy
+                    println("${imie}, ${nazwisko}, ${telefon}, $email") //Wypisanie kontaktow do konsoli
                 }
 
             }
@@ -49,7 +49,7 @@ object PlaceholderContent {
 
         }
 
-        val set:MutableSet<kontakt> = kontakty.toMutableSet() //Konwersja listy kontaktow na set (Dzieki temu usuwamy duplikaty)
+        val set:MutableSet<kontakt> = kontakty.toMutableSet().toSortedSet(compareBy { it.imie }) //Konwersja listy kontaktow na set (Dzieki temu usuwamy duplikaty)
         return set.toMutableList() //Konwersja seta na liste
     }
 

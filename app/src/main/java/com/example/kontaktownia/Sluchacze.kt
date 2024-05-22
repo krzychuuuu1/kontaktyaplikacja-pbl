@@ -1,4 +1,5 @@
 package com.example.kontaktownia
+
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
@@ -26,7 +27,7 @@ fun dodaj(kontakt: kontakt, view: View): Int { //Funkcja ktora wykonuje dodanie 
     if (!kontakty.contains(kontakt)) {  //sprawdzenie czy nie ma juz takiego kontaktu
         if(kontakty.add(kontakt)) {  //dodanie kontaktu do bufora
             val plik = File(sciezka) //otwarcie pliku
-            val wyjscie = kontakty.joinToString(separator = "\n") { "${it.imie},${it.nazwisko},${it.telefon}" } //konwersja bufora do stringa
+            val wyjscie = kontakty.joinToString(separator = "\n") { "${it.imie},${it.nazwisko},${it.telefon},${it.email}" } //konwersja bufora do stringa
             plik.writeText(wyjscie) //zapis do pliku
             return 1 //zwrocenie informacji o pomyslnym dodaniu
         }
@@ -39,9 +40,13 @@ fun dodaj(kontakt: kontakt, view: View): Int { //Funkcja ktora wykonuje dodanie 
         return 2 //zwrocenie informacji o niepowodzeniu dodania z powodu duplikatu
     }
 }
-fun sluchacz(imie: EditText, nazwisko:EditText, telefon: EditText, knefel: Button): View.OnClickListener { //Sluchacz na przycisk
+fun sluchacz(imie: EditText, nazwisko:EditText, telefon: EditText, email: EditText,knefel: Button): View.OnClickListener { //Sluchacz na przycisk
         return View.OnClickListener {
-            val dane = zbierzdane(imie,nazwisko,telefon) //Pobranie danych
+            val dane = zbierzdane(imie,nazwisko,telefon, email) //Pobranie danych
+            imie.setText("")
+            nazwisko.setText("")
+            telefon.setText("")
+            email.setText("")
             if (dane != null) { //Sprawdzenie czy dane sa poprawne
                 //Wszystkie Toasty sa tylko do testow
                 var text = "Dotarlem do zbierania danych Dane To: ${dane.imie} ${dane.nazwisko} ${dane.telefon}"
@@ -73,30 +78,33 @@ fun sluchacz(imie: EditText, nazwisko:EditText, telefon: EditText, knefel: Butto
         }
     }
 
-fun sprawdz(imie: String, nazwisko: String, telefon:String): Boolean { //Funkcja do sprawdzania danych
-    if(imie.isEmpty() || nazwisko.isEmpty() || telefon.isEmpty()) { //Sprawdzenie czy dane sa puste
-
+fun sprawdz(imie: String, nazwisko: String, telefon:String, email:String): Boolean { //Funkcja do sprawdzania danych
+    if(imie.isEmpty() || nazwisko.isEmpty() || telefon.isEmpty() || email.isEmpty()) { //Sprawdzenie czy dane sa puste
         return false
     }
     if (!telefon.matches(Regex("\\d+"))) { //Sprawdzenie czy numer telefonu jest poprawny
         return false
     }
+    return if(!email.matches(Regex("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}\$"))) { //Sprawdzenie czy email jest poprawny
+        false
+    }
     else {  //Jezeli dane sa poprawne
-        return true
+        true
     }
 }
-fun zbierzdane(imie: EditText, nazwisko: EditText, telefon: EditText): kontakt? { //Funkcja do zbierania danych
+fun zbierzdane(imie: EditText, nazwisko: EditText, telefon: EditText, email: EditText): kontakt? { //Funkcja do zbierania danych
     val imied = imie.text.toString() //Pobranie danych imienia
     val nazwiskod = nazwisko.text.toString() //Pobranie danych nazwiska
     val telefond = telefon.text.toString() //Pobranie danych telefonu
-    if (!sprawdz(imied,nazwiskod,telefond)) { //Sprawdzenie czy dane sa poprawne
+    val emaild = email.text.toString() //Pobranie danych email
+    if (!sprawdz(imied,nazwiskod,telefond, emaild)) { //Sprawdzenie czy dane sa poprawne
         return null
     }
-    return kontakt(imied, nazwiskod, telefond) //Zwracanie danych
+    return kontakt(imied, nazwiskod, telefond, emaild) //Zwracanie danych
 }
 @SuppressLint("SetTextI18n")
 fun cyfra(button: List<Button>, text: TextView) { //Sluchacz na cyfry wybierania
-    button.forEach{
+    button.forEach{ it ->
         it.setOnClickListener {
             val to = it as Button
             val tekst = to.text.toString()
@@ -105,12 +113,14 @@ fun cyfra(button: List<Button>, text: TextView) { //Sluchacz na cyfry wybierania
     }
 }
 fun dzwon(button: ImageButton, text: TextView) { //Funkcja do zadzwonienia na numer
-    button.setOnClickListener {
+        button.setOnClickListener {
+            val numer = text.text.toString()
+            val intent = Intent(Intent.ACTION_CALL)
+            intent.data = Uri.parse("tel:${numer}")
+            startActivity(button.context,intent,null)
 
-        val numer = text.text.toString()
-        val intent = Intent(Intent.ACTION_CALL)
-        intent.data = Uri.parse("tel:${numer}")
-        startActivity(button.context,intent,null)
-
+        }
     }
-}
+
+
+

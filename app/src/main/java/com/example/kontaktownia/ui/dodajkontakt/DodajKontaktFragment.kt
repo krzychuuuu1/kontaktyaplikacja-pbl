@@ -32,7 +32,8 @@ class DodajKontaktFragment : Fragment(){
         val nazwisko: EditText = binding.nazwisko
         val telefon: EditText = binding.telefon
         val knefel: Button = binding.dodajkontakt
-        knefel.setOnClickListener(sluchacz(imie,nazwisko,telefon,knefel))
+        val email: EditText = binding.email
+        knefel.setOnClickListener(sluchacz(imie,nazwisko,telefon,email,knefel))
 
 
 
