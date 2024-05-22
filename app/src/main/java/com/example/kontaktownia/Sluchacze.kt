@@ -13,47 +13,42 @@ import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent.kontakt
 import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent.wczytajkontakty
 import java.io.File
 
-fun dodaj(kontakt: kontakt, view: View): Int {
-    val kontakty = mutableListOf<kontakt>()
-    val sciezka = view.context.filesDir.toString()+"/kontakty.txt"
-    if (File(sciezka).length() != 0L) {
+fun dodaj(kontakt: kontakt, view: View): Int { //Funkcja ktora wykonuje dodanie do pliku danego kontaktu
+    val kontakty = mutableListOf<kontakt>() //definicja listy tymczasowej (buforu z pliku)
+    val sciezka = view.context.filesDir.toString()+"/kontakty.txt" //sciezka do pliku
+    if (File(sciezka).length() != 0L) {   //sprawdzenie czy plik nie jest pusty
         wczytajkontakty(sciezka).forEach {
             kontakty.add(it)
             println(it)
         }
     }
 
-    if (!kontakty.contains(kontakt)) {
-        if(kontakty.add(kontakt)) {
-            val plik = File(sciezka)
-            val wyjscie = kontakty.joinToString(separator = "\n") { "${it.imie},${it.nazwisko},${it.telefon}" }
-            println("*******************")
-            println(wyjscie)
-            println("*******************22")
-            println(kontakty)
-            println("*******************22222")
-            plik.writeText(wyjscie)
-            return 1
+    if (!kontakty.contains(kontakt)) {  //sprawdzenie czy nie ma juz takiego kontaktu
+        if(kontakty.add(kontakt)) {  //dodanie kontaktu do bufora
+            val plik = File(sciezka) //otwarcie pliku
+            val wyjscie = kontakty.joinToString(separator = "\n") { "${it.imie},${it.nazwisko},${it.telefon}" } //konwersja bufora do stringa
+            plik.writeText(wyjscie) //zapis do pliku
+            return 1 //zwrocenie informacji o pomyslnym dodaniu
         }
         else {
-            return 0
+            return 0 //zwrocenie informacji o niepowodzeniu dodania
         }
     }
 
     else {
-        return 2
+        return 2 //zwrocenie informacji o niepowodzeniu dodania z powodu duplikatu
     }
 }
-fun sluchacz(imie: EditText, nazwisko:EditText, telefon: EditText, knefel: Button): View.OnClickListener? {
+fun sluchacz(imie: EditText, nazwisko:EditText, telefon: EditText, knefel: Button): View.OnClickListener { //Sluchacz na przycisk
         return View.OnClickListener {
-            val dane = zbierzdane(imie,nazwisko,telefon)
-            if (dane != null) {
-
-                var text = "Dotarlem do zbierania danych Dane To: ${dane!!.imie} ${dane.nazwisko} ${dane.telefon}"
+            val dane = zbierzdane(imie,nazwisko,telefon) //Pobranie danych
+            if (dane != null) { //Sprawdzenie czy dane sa poprawne
+                //Wszystkie Toasty sa tylko do testow
+                var text = "Dotarlem do zbierania danych Dane To: ${dane.imie} ${dane.nazwisko} ${dane.telefon}"
                 var toast = Toast.makeText(knefel.context,text, Toast.LENGTH_SHORT)
                 toast.show()
                 if (dodaj(dane,knefel) == 1) {
-                    text = "Dodalem do pliku ${knefel.context.filesDir}"
+                    text = "Dodalem do listy kontaktow ${knefel.context.filesDir}"
                     toast = Toast.makeText(knefel.context,text, Toast.LENGTH_SHORT)
                     toast.show()
                 }
@@ -78,29 +73,29 @@ fun sluchacz(imie: EditText, nazwisko:EditText, telefon: EditText, knefel: Butto
         }
     }
 
-fun sprawdz(imie: String, nazwisko: String, telefon:String): Boolean {
-    if(imie.isEmpty() || nazwisko.isEmpty() || telefon.isEmpty()) {
+fun sprawdz(imie: String, nazwisko: String, telefon:String): Boolean { //Funkcja do sprawdzania danych
+    if(imie.isEmpty() || nazwisko.isEmpty() || telefon.isEmpty()) { //Sprawdzenie czy dane sa puste
 
         return false
     }
-    if (!telefon.matches(Regex("\\d+"))) {
+    if (!telefon.matches(Regex("\\d+"))) { //Sprawdzenie czy numer telefonu jest poprawny
         return false
     }
-    else {
+    else {  //Jezeli dane sa poprawne
         return true
     }
 }
-fun zbierzdane(imie: EditText, nazwisko: EditText, telefon: EditText): kontakt? {
-    val imied = imie.text.toString()
-    val nazwiskod = nazwisko.text.toString()
-    val telefond = telefon.text.toString()
-    if (!sprawdz(imied,nazwiskod,telefond)) {
+fun zbierzdane(imie: EditText, nazwisko: EditText, telefon: EditText): kontakt? { //Funkcja do zbierania danych
+    val imied = imie.text.toString() //Pobranie danych imienia
+    val nazwiskod = nazwisko.text.toString() //Pobranie danych nazwiska
+    val telefond = telefon.text.toString() //Pobranie danych telefonu
+    if (!sprawdz(imied,nazwiskod,telefond)) { //Sprawdzenie czy dane sa poprawne
         return null
     }
-    return kontakt(imied, nazwiskod, telefond)
+    return kontakt(imied, nazwiskod, telefond) //Zwracanie danych
 }
 @SuppressLint("SetTextI18n")
-fun cyfra(button: List<Button>, text: TextView) {
+fun cyfra(button: List<Button>, text: TextView) { //Sluchacz na cyfry wybierania
     button.forEach{
         it.setOnClickListener {
             val to = it as Button
@@ -109,11 +104,11 @@ fun cyfra(button: List<Button>, text: TextView) {
         }
     }
 }
-fun dzwon(button: ImageButton, text: TextView) {
+fun dzwon(button: ImageButton, text: TextView) { //Funkcja do zadzwonienia na numer
     button.setOnClickListener {
 
         val numer = text.text.toString()
-        val intent = Intent(Intent.ACTION_CALL);
+        val intent = Intent(Intent.ACTION_CALL)
         intent.data = Uri.parse("tel:${numer}")
         startActivity(button.context,intent,null)
 

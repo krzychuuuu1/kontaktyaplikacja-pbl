@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_dodajkontakt"
-        android:name="com.example.kontaktownia.ui.dodajkontakt.NotificationsFragment"
+        android:name="com.example.kontaktownia.ui.dodajkontakt.DodajKontaktFragment"
         android:label="@string/menudodajkontakt"
          />
 </navigation>

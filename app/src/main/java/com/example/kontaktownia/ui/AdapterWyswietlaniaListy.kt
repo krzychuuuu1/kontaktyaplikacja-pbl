@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kontaktownia.databinding.FragmentItemBinding
 import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent.kontakt
 
-class CustomRecyclerAdapter(
+class AdapterWyswietlaniaListy(
     private val values: List<kontakt>
-) : RecyclerView.Adapter<CustomRecyclerAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<AdapterWyswietlaniaListy.ViewHolder>() {
     val wartosci : MutableList<kontakt> = values.toMutableList()
 
 
@@ -29,7 +29,7 @@ class CustomRecyclerAdapter(
         val item = wartosci[position]
         val nazwa = item.imie + item.nazwisko
         holder.contentView.text = nazwa
-        holder.telefonView.text = item.telefon.toString()
+        holder.telefonView.text = item.telefon
     }
 
     override fun getItemCount(): Int = values.size

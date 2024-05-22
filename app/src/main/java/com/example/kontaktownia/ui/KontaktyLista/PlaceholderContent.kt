@@ -12,35 +12,35 @@ object PlaceholderContent {
 
     data class kontakt(val imie: String, val nazwisko: String, val telefon: String)
 
-    fun wczytajkontakty(sciezka: String): MutableList<kontakt> {
-        val plik = File(sciezka)
-        val kontakty = mutableListOf<kontakt>()
+    fun wczytajkontakty(sciezka: String): MutableList<kontakt> { //Funkcja wczytuje kontakty z pliku
+        val plik = File(sciezka) //Otwieranie pliku
+        val kontakty = mutableListOf<kontakt>() //Stworzenie listy kontaktow
         with(plik) {
-            if (!exists()) {
-                if (!createNewFile()) {
+            if (!exists()) { //Sprawdzenie czy plik istnieje
+                if (!createNewFile()) { //Tworzenie pliku gdy go nie ma
                     error("Nie udalo sie stworzyc pliku")
                 }
             }
         }
-        if(plik.canRead() && plik.canWrite()) {
+        if(plik.canRead() && plik.canWrite()) { //Sprawdzenie czy plik jest odczytywalny i zapisywalny
             println("Plik jest odczytywalny i zapisywalny")
         }
-        else {
+        else { //Nie da sie odczytac pliku
             error("Nie da sie odczytac pliku")
         }
-        if (plik.length() == 0L) {
+        if (plik.length() == 0L) { //Sprawdzenie czy plik jest pusty
             println("Plik jest pusty")
 
         }
 
         else {
-            if(plik.length() > 0L) {
+            if(plik.length() > 0L) { //Sprawdzenie czy plik nie jest pusty
                 println("jestem tu")
 
-                plik.forEachLine {
+                plik.forEachLine { //Wczytywanie linijek z pliku
                     val (imie, nazwisko, telefon) = it.split(",", limit = 3)
-                    kontakty.add(kontakt(imie, nazwisko, telefon))
-                    println("${imie}, ${nazwisko}, ${telefon}")
+                    kontakty.add(kontakt(imie, nazwisko, telefon)) //Dodawanie kontaktow do listy
+                    println("${imie}, ${nazwisko}, ${telefon}") //Wypisanie kontaktow do konsoli
                 }
 
             }
@@ -49,8 +49,8 @@ object PlaceholderContent {
 
         }
 
-        val set:MutableSet<kontakt> = kontakty.toMutableSet()
-        return set.toMutableList()
+        val set:MutableSet<kontakt> = kontakty.toMutableSet() //Konwersja listy kontaktow na set (Dzieki temu usuwamy duplikaty)
+        return set.toMutableList() //Konwersja seta na liste
     }
 
 

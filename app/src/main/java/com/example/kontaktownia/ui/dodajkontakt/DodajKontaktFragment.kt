@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+//import androidx.lifecycle.ViewModelProvider
 import com.example.kontaktownia.databinding.FragmentDodajBinding
 import com.example.kontaktownia.sluchacz
 
-class NotificationsFragment : Fragment(){
+class DodajKontaktFragment : Fragment(){
 
     private var _binding: FragmentDodajBinding? = null
 
@@ -24,8 +24,7 @@ class NotificationsFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+
 
         _binding = FragmentDodajBinding.inflate(inflater, container, false)
         val root: View = binding.root
