@@ -1,19 +1,25 @@
 package com.example.kontaktownia
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.Intent
 import android.net.Uri
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.isVisible
+import com.example.kontaktownia.ui.AdapterWyswietlaniaListy
 import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent.kontakt
 import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent.wczytajkontakty
 import java.io.File
+
 
 fun dodaj(kontakt: kontakt, view: View): Int { //Funkcja ktora wykonuje dodanie do pliku danego kontaktu
     val kontakty = mutableListOf<kontakt>() //definicja listy tymczasowej (buforu z pliku)
@@ -60,7 +66,7 @@ fun sluchacz(imie: EditText, nazwisko:EditText, telefon: EditText, email: EditTe
                 }
                 if (dodaj(dane,knefel) == 2) {
                     text = "Nie Dodalem do pliku poniewaz juz istnieje ten kontakt"
-                    toast = Toast.makeText(knefel.context,text, Toast.LENGTH_SHORT)
+                    toast = Toast.makeText(knefel.context, text, Toast.LENGTH_SHORT)
                     toast.show()
                 }
                 else {
@@ -126,12 +132,17 @@ fun szukanie(button: ImageButton, text: EditText) {
     button.setOnClickListener {
         if(text.isVisible) {
             text.visibility = View.INVISIBLE
-            text.requestFocus()
-            text.setFocusableInTouchMode(true)
+
 
         }
         else {
             text.visibility = View.VISIBLE
+            text.requestFocus()
+            text.setFocusableInTouchMode(true)
+            val imm = text.context.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(text, InputMethodManager.SHOW_FORCED)
+
+
         }
     }
 }

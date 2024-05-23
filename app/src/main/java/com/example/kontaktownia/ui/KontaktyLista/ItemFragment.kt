@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kontaktownia.R
 import com.example.kontaktownia.ui.AdapterWyswietlaniaListy
 import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent.wczytajkontakty
-
+import com.example.kontaktownia.MainActivity
 /**
  * A fragment representing a list of Items.
  */
@@ -40,8 +42,17 @@ class ItemFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = AdapterWyswietlaniaListy(wczytajkontakty(context.filesDir.toString()+"/kontakty.txt"))
+                adapter = AdapterWyswietlaniaListy(wczytajkontakty(context.filesDir.toString()+"/kontakty.txt"),false,"")
+
+
             }
+        }
+        val edittext= activity?.findViewById<EditText>(R.id.wyszukiwanie)
+
+        edittext?.doOnTextChanged { text, start, before, count ->
+            println("KURWA SZUKAM")
+            (view as RecyclerView).adapter = AdapterWyswietlaniaListy(PlaceholderContent.wczytajkontakty(edittext.context.filesDir.toString()+"/kontakty.txt"),true,text.toString())
+
         }
         return view
     }

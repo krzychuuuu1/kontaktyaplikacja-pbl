@@ -2,15 +2,21 @@ package com.example.kontaktownia
 
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.kontaktownia.databinding.ActivityMainBinding
+import com.example.kontaktownia.ui.AdapterWyswietlaniaListy
+import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -26,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
         val ImageButton = binding.imageButton3
         val MaterialToolbar = binding.materialToolbar
-        val textView = binding.wyszukiwanie
+        val textView: EditText= binding.wyszukiwanie
         szukanie(ImageButton, textView)
         val navView: BottomNavigationView = binding.navView
 
@@ -43,11 +49,10 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         println("Aktualna zakladka")
         navController.addOnDestinationChangedListener{
-            controller, destination, arguments -> println(destination.label)
+                _, destination, _ -> println(destination.label)
             if(destination.label == "Lista") {
                 ImageButton.visibility = View.VISIBLE
                 MaterialToolbar.visibility = View.VISIBLE
-
             } else {
                 ImageButton.visibility = View.GONE
                 MaterialToolbar.visibility = View.GONE
