@@ -2,7 +2,10 @@ package com.example.kontaktownia.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kontaktownia.databinding.FragmentItemBinding
 import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent.kontakt
@@ -20,6 +23,7 @@ class AdapterWyswietlaniaListy(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
+
             )
         )
 

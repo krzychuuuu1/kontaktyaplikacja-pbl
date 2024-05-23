@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.view.isVisible
 import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent.kontakt
 import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent.wczytajkontakty
 import java.io.File
@@ -121,6 +122,19 @@ fun dzwon(button: ImageButton, text: TextView) { //Funkcja do zadzwonienia na nu
 
         }
     }
+fun szukanie(button: ImageButton, text: EditText) {
+    button.setOnClickListener {
+        if(text.isVisible) {
+            text.visibility = View.INVISIBLE
+            text.requestFocus()
+            text.setFocusableInTouchMode(true)
+
+        }
+        else {
+            text.visibility = View.VISIBLE
+        }
+    }
+}
 
 
 

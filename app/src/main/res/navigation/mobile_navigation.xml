@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_kontakty"
-        android:name="com.example.kontaktownia.ui.ItemFragment"
+        android:name="com.example.kontaktownia.ui.KontaktyLista.ItemFragment"
         android:label="Lista"
         tools:layout="@layout/fragment_item_list" />
 

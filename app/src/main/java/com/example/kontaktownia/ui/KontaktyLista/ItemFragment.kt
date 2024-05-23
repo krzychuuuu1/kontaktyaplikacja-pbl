@@ -1,4 +1,4 @@
-package com.example.kontaktownia.ui
+package com.example.kontaktownia.ui.KontaktyLista
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kontaktownia.R
+import com.example.kontaktownia.ui.AdapterWyswietlaniaListy
 import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent.wczytajkontakty
 
 /**
