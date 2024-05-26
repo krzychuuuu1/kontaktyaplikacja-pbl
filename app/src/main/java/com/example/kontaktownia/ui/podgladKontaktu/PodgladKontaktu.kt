@@ -53,7 +53,7 @@ class podgladKontaktu : Fragment() {
             telefonV.visibility = View.VISIBLE
             if(telefon != "Brak numeru") {
                 dzwonV.visibility = View.VISIBLE
-                dzwon(dzwonV, telefon!!)
+                dzwon(dzwonV, telefon!!, view)
             }
             else {
                 dzwonV.visibility = View.GONE

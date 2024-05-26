@@ -35,7 +35,7 @@ class WybieranieFragment : Fragment() {
         val root: View = binding.root
         val knefle = listOf(binding.button1, binding.button2, binding.button3, binding.button4, binding.button5, binding.button6, binding.button7,binding.button8,binding.button9,binding.button10,binding.button11)
         cyfra(knefle, binding.editTextNumber)
-        dzwon(binding.imageButton, binding.editTextNumber.text.toString())
+        dzwon(binding.imageButton, "", binding.root)
         return root
     }
 

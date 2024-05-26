@@ -125,15 +125,40 @@ fun cyfra(button: List<Button>, text: TextView) { //Sluchacz na cyfry wybierania
         }
     }
 }
-fun dzwon(button: ImageButton, text: String) { //Funkcja do zadzwonienia na numer
-        button.setOnClickListener {
-            val numer = text
-            val intent = Intent(Intent.ACTION_CALL)
-            intent.data = Uri.parse("tel:${numer}")
-            startActivity(button.context,intent,null)
+fun dzwon(button: ImageButton, text: String, view: View?) { //Funkcja do zadzwonienia na numer
+    if (view != null) {
+        if (text == "") {
+            println("jest puste")
+            button.setOnClickListener {
+                val numer: String = view.findViewById<TextView>(R.id.editTextNumber).text.toString()
+                println("Dzwonie do ale tak naprawde")
+                println(numer)
+                val intent = Intent(Intent.ACTION_CALL)
+                intent.data = Uri.parse("tel:${numer}")
+                startActivity(button.context, intent, null)
 
+            }
         }
+        else {
+
+            button.setOnClickListener {
+                val numer: String = text
+                println("Dzwonie do ale tak naprawde")
+                println(text)
+                val intent = Intent(Intent.ACTION_CALL)
+                intent.data = Uri.parse("tel:${numer}")
+                startActivity(button.context, intent, null)
+
+            }
+        }
+
     }
+   else {
+        return
+        }
+
+}
+
 fun szukanie(button: ImageButton, text: EditText) {
     button.setOnClickListener {
         if(text.isVisible) {
