@@ -40,7 +40,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="52dp"
+            android:layout_height="55dp"
+            android:background="#00FFFFFF"
+            android:src="?attr/actionModeCloseDrawable"
+            app:layout_constraintStart_toStartOf="@+id/materialToolbar"
+            app:layout_constraintTop_toTopOf="@+id/materialToolbar" />
         <ImageButton
             android:id="@+id/imageButton3"
             android:layout_width="0dp"

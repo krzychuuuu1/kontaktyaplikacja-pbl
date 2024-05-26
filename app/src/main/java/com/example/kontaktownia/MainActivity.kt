@@ -34,6 +34,11 @@ class MainActivity : AppCompatActivity() {
         val MaterialToolbar = binding.materialToolbar
         val textView: EditText= binding.wyszukiwanie
         szukanie(ImageButton, textView)
+        val powrotV: ImageButton = binding.back
+        powrotV.setOnClickListener {
+            val navController = findNavController(R.id.nav_host_fragment_activity_main)
+            navController.navigate(R.id.action_podgladKontaktu_to_navigation_kontakty)
+        }
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
@@ -53,10 +58,17 @@ class MainActivity : AppCompatActivity() {
             if(destination.label == "Lista") {
                 ImageButton.visibility = View.VISIBLE
                 MaterialToolbar.visibility = View.VISIBLE
-            } else {
+                powrotV.visibility = View.GONE
+            }
+            else if(destination.label == "podgladKontaktu") {
+                powrotV.visibility = View.VISIBLE
+                MaterialToolbar.visibility = View.VISIBLE
+            }
+            else {
                 ImageButton.visibility = View.GONE
                 MaterialToolbar.visibility = View.GONE
                 textView.visibility = View.GONE
+                powrotV.visibility = View.GONE
             }
         }
 

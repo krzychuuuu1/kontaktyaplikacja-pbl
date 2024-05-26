@@ -1,15 +1,20 @@
 package com.example.kontaktownia.ui
 
+import android.os.Bundle
 import android.service.autofill.Dataset
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kontaktownia.R
 import com.example.kontaktownia.databinding.FragmentItemBinding
 import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent.kontakt
+import com.example.kontaktownia.ui.podgladKontaktu.podgladKontaktu
 
 class AdapterWyswietlaniaListy(
     private val values: List<kontakt>,
@@ -58,6 +63,19 @@ class AdapterWyswietlaniaListy(
 
         holder.contentView.text = nazwa
         holder.telefonView.text = item.telefon
+        holder.itemView.setOnClickListener {
+            if (holder.telefonView.text != "Brak kontaktow z takimi danymi") {
+                val bundle = Bundle()
+                bundle.putString("imie", item.imie)
+                bundle.putString("nazwisko", item.nazwisko)
+                bundle.putString("telefon", item.telefon)
+                bundle.putString("email", item.email)
+                holder.itemView.findNavController().navigate(R.id.action_navigation_kontakty_to_podgladKontaktu, bundle)
+
+
+
+            }
+        }
     }
 
     override fun getItemCount(): Int = wartosci.size

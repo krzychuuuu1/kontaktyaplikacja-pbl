@@ -15,11 +15,29 @@
         android:id="@+id/navigation_kontakty"
         android:name="com.example.kontaktownia.ui.KontaktyLista.ItemFragment"
         android:label="Lista"
-        tools:layout="@layout/fragment_item_list" />
+        tools:layout="@layout/fragment_item_list" >
+        <action
+            android:id="@+id/action_navigation_kontakty_to_podgladKontaktu"
+            app:destination="@id/podgladKontaktu"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dodajkontakt"
         android:name="com.example.kontaktownia.ui.dodajkontakt.DodajKontaktFragment"
         android:label="@string/menudodajkontakt"
          />
+    <fragment
+        android:id="@+id/podgladKontaktu"
+        android:name="com.example.kontaktownia.ui.podgladKontaktu.podgladKontaktu"
+        android:label="podgladKontaktu"
+        tools:layout="@layout/fragment_podglad_kontaktu" >
+        <argument android:name="kontakt" />
+        <action
+            android:id="@+id/action_podgladKontaktu_to_navigation_kontakty"
+            app:destination="@id/navigation_kontakty"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
 </navigation>

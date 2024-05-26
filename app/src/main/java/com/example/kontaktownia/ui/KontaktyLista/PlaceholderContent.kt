@@ -52,6 +52,16 @@ object PlaceholderContent {
         val set:MutableSet<kontakt> = kontakty.toMutableSet().toSortedSet(compareBy { it.imie }) //Konwersja listy kontaktow na set (Dzieki temu usuwamy duplikaty)
         return set.toMutableList() //Konwersja seta na liste
     }
+    fun wczytajjeden(kontakt: kontakt, sciezka: String) : kontakt{
+        val kontakty = wczytajkontakty(sciezka)
+        if (kontakty.contains(kontakt)) {
+            return kontakty.find { it == kontakt }!!
+        }
+        else {
+            return kontakt
+        }
+
+    }
 
 
 
