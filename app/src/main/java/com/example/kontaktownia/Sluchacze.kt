@@ -177,6 +177,25 @@ fun szukanie(button: ImageButton, text: EditText) {
         }
     }
 }
+fun edytuj (kontakt: kontakt?, kontaktE :kontakt, view: View) {
+    val kontakty = wczytajkontakty(view.context.filesDir.toString()+"/kontakty.txt")
+    if (kontakt != null) {
+        if (kontakty.contains(kontakt)) {
+            kontakty.remove(kontakt)
+            kontakty.add(kontaktE)
+            val plik = File(view.context.filesDir.toString()+"/kontakty.txt")
+            val wyjscie = kontakty.joinToString(separator = "\n") { "${it.imie},${it.nazwisko},${it.telefon},${it.email}" }
+            plik.writeText(wyjscie)
+        }
+        else {
+            println("Nie ma takiego kontaktu")
+        }
+    }
+    else {
+        println("Nie otrzymalem kontaktu")
+    }
 
+
+}
 
 

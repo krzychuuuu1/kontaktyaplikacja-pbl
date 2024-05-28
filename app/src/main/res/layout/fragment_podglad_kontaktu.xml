@@ -126,5 +126,14 @@
         app:layout_constraintStart_toEndOf="@+id/telefonp"
         app:layout_constraintTop_toTopOf="@+id/telefonp" />
 
+    <ImageButton
+        android:id="@+id/knefelEdycja"
+        android:layout_width="47dp"
+        android:layout_height="55dp"
+        android:background="@drawable/okragle2"
+        android:src="@android:drawable/ic_menu_edit"
+        app:layout_constraintStart_toEndOf="@+id/nazwap"
+        app:layout_constraintTop_toTopOf="@+id/nazwap" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.edycja.Edycja">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/imieE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="101dp"
+                android:layout_marginTop="120dp"
+                android:layout_marginEnd="100dp"
+                android:ems="10"
+                android:hint="@string/dodaj_kontakt_imie"
+                android:importantForAutofill="no"
+                android:inputType="text|textPersonName"
+                android:minHeight="48dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/nazwiskoE"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="101dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="100dp"
+                android:ems="10"
+                android:hint="@string/dodaj_kontakt_nazwisko"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/telefonE"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="101dp"
+                android:layout_marginEnd="100dp"
+                android:ems="10"
+                android:hint="@string/dodaj_kontakt_telefon"
+                android:inputType="number"
+                android:numeric="integer"
+                android:phoneNumber="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/emailE"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="101dp"
+                android:layout_marginEnd="100dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/dodaj_kontakt_e_mail"
+                android:inputType="textEmailAddress" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/edytujkontakt"
+            android:layout_width="117dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="161dp"
+            android:layout_marginBottom="117dp"
+            android:text="Edytuj"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/telefonE" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

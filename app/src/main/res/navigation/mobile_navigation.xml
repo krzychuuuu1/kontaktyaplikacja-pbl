@@ -39,5 +39,17 @@
             app:destination="@id/navigation_kontakty"
             app:enterAnim="@anim/nav_default_pop_enter_anim"
             app:exitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_podgladKontaktu_to_edycja"
+            app:destination="@id/edycja" />
+    </fragment>
+    <fragment
+        android:id="@+id/edycja"
+        android:name="com.example.kontaktownia.ui.edycja.Edycja"
+        android:label="Edycja"
+        tools:layout="@layout/fragment_edycja" >
+        <action
+            android:id="@+id/action_edycja_to_podgladKontaktu"
+            app:destination="@id/podgladKontaktu" />
     </fragment>
 </navigation>

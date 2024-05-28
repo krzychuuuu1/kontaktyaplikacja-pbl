@@ -64,6 +64,10 @@ class MainActivity : AppCompatActivity() {
                 powrotV.visibility = View.VISIBLE
                 MaterialToolbar.visibility = View.VISIBLE
             }
+            else if(destination.label == "Edycja") {
+                powrotV.visibility = View.VISIBLE
+                MaterialToolbar.visibility = View.VISIBLE
+            }
             else {
                 ImageButton.visibility = View.GONE
                 MaterialToolbar.visibility = View.GONE

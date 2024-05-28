@@ -70,7 +70,17 @@ class podgladKontaktu : Fragment() {
             mailV.visibility = View.GONE
             view.findViewById<TextView>(R.id.text33).visibility = View.GONE
         }
+        val knefeledycja : ImageButton = view.findViewById(R.id.knefelEdycja)
+        knefeledycja.setOnClickListener{
+            val bundle = Bundle()
+            bundle.putString("imie", imie)
+            bundle.putString("nazwisko", nazwisko)
+            bundle.putString("telefon", telefon)
+            bundle.putString("email", email)
+            knefeledycja.findNavController().navigate(R.id.action_podgladKontaktu_to_edycja, bundle)
 
+
+        }
 
 
         return view
