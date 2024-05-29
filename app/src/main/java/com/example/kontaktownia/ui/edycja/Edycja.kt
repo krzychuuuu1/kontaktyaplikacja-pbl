@@ -15,9 +15,13 @@ import com.example.kontaktownia.edytuj
 import com.example.kontaktownia.sprawdz
 import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent
 import com.example.kontaktownia.zbierzdane
-
-
+/**
+ * Edycja
+ *
+ * @constructor Utworz pusta edycje
+ */
 class Edycja : Fragment() {
+    // Definicja parametrow klasy
     private var imie: String? = null
     private var nazwisko: String? = null
     private var telefon: String? = null
@@ -28,10 +32,12 @@ class Edycja : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+            //wczytanie przekazanych wartosci
             imie = it.getString("imie")
             nazwisko = it.getString("nazwisko")
             telefon = it.getString("telefon")
             email = it.getString("email")
+            //utworzenie obiektu kontaktu
             if (!(imie.isNullOrEmpty() || nazwisko.isNullOrEmpty() || telefon.isNullOrEmpty() || email.isNullOrEmpty())) {
                 kontakt = PlaceholderContent.kontakt(imie!!, nazwisko!!, telefon!!, email!!)
             }
@@ -43,13 +49,14 @@ class Edycja : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        // definicja widoków
         val view = inflater.inflate(R.layout.fragment_edycja, container, false)
         val imieV: EditText = view.findViewById(R.id.imieE)
         val nazwiskoV: EditText = view.findViewById(R.id.nazwiskoE)
         val telefonV: EditText = view.findViewById(R.id.telefonE)
         val emailV: EditText = view.findViewById(R.id.emailE)
         val edytuj: Button = view.findViewById(R.id.edytujkontakt)
+        //ustawienie pól do edycji na wartości z bazy danych
         imieV.setText(imie)
         nazwiskoV.setText(nazwisko)
         telefonV.setText(telefon)
@@ -62,11 +69,13 @@ class Edycja : Fragment() {
             if (dane != null) {
                 println("Dane sa poprawne")
                 edytuj(kontakt, dane, view)
+                //stworzenie bundla z danymi kontaktu
                 val bundle = Bundle()
                 bundle.putString("imie", dane.imie)
                 bundle.putString("nazwisko", dane.nazwisko)
                 bundle.putString("telefon", dane.telefon)
                 bundle.putString("email", dane.email)
+                //powrot do podgladu kontaktu
                 edytuj.findNavController().navigate(R.id.action_edycja_to_podgladKontaktu,bundle)
             } else {
                 println("Dane sa niepoprawne")

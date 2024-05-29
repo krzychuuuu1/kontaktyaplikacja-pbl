@@ -14,8 +14,11 @@ import com.example.kontaktownia.R
 import com.example.kontaktownia.ui.AdapterWyswietlaniaListy
 import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent.wczytajkontakty
 import com.example.kontaktownia.MainActivity
+
 /**
- * A fragment representing a list of Items.
+ * Fragment listy kontaktow
+ *
+ * @constructor Utworz fragment listy
  */
 class ItemFragment : Fragment() {
 
@@ -35,40 +38,31 @@ class ItemFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_item_list, container, false)
 
-        // Set the adapter
+        // ustawienie adaptera listy kontaktow
         if (view is RecyclerView) {
             with(view) {
                 layoutManager = when {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
+                //ustawienie adaptera na wyswietlanie wszyskich kontaktow
                 adapter = AdapterWyswietlaniaListy(wczytajkontakty(context.filesDir.toString()+"/kontakty.txt"),false,"")
 
 
             }
         }
         val edittext= activity?.findViewById<EditText>(R.id.wyszukiwanie)
-
+        //dodanie sluchacza dla pola wyszukiwaia
         edittext?.doOnTextChanged { text, start, before, count ->
-            println("KURWA SZUKAM")
+            //zmiana adaptera listy kontaktow na nowy z filtrowanymi kontaktami
             (view as RecyclerView).adapter = AdapterWyswietlaniaListy(PlaceholderContent.wczytajkontakty(edittext.context.filesDir.toString()+"/kontakty.txt"),true,text.toString())
 
         }
         return view
     }
 
-    companion object {
-
-        // TODO: Customize parameter argument names
+    companion object { //szczerze nie wiem po co to ale jak tego nie ma to umiera
         const val ARG_COLUMN_COUNT = "column-count"
 
-        // TODO: Customize parameter initialization
-//        @JvmStatic
-//        fun newInstance(columnCount: Int) =
-//            ItemFragment().apply {
-//                arguments = Bundle().apply {
-//                    putInt(ARG_COLUMN_COUNT, columnCount)
-//                }
-//            }
     }
 }

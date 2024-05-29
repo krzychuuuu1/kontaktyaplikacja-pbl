@@ -20,6 +20,11 @@ import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+/**
+ * Klasa glowna
+ *
+ * @constructor Utworzenie glownej klasy
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -29,12 +34,15 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        //ukrycie domyslnego paska akcji
         supportActionBar?.hide()
+        //definicja zmiennych wlasnego paska akcji
         val ImageButton = binding.imageButton3
         val MaterialToolbar = binding.materialToolbar
         val textView: EditText= binding.wyszukiwanie
         szukanie(ImageButton, textView)
         val powrotV: ImageButton = binding.back
+        //ustawienie sluchacz przyciska powrotu
         powrotV.setOnClickListener {
             val navController = findNavController(R.id.nav_host_fragment_activity_main)
             navController.navigate(R.id.action_podgladKontaktu_to_navigation_kontakty)
@@ -42,17 +50,15 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
 
-
+        //definicja menu dolnego
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_wybieranie, R.id.navigation_kontakty, R.id.navigation_dodajkontakt
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        println("Aktualna zakladka")
+        //pokazywanie i ukrywanie paska akcji w zaleznosci od fragmentu
         navController.addOnDestinationChangedListener{
                 _, destination, _ -> println(destination.label)
             if(destination.label == "Lista") {

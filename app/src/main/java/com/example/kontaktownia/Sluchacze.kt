@@ -19,8 +19,18 @@ import com.example.kontaktownia.ui.AdapterWyswietlaniaListy
 import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent.kontakt
 import com.example.kontaktownia.ui.KontaktyLista.PlaceholderContent.wczytajkontakty
 import java.io.File
+/*
+ * Plik z funkcjami do obslugi kontaktow
+ * Wiekszosc funkcji jest sluchaczami na przyciski lub funkcjami do obslugi danych
+ */
 
-
+/**
+ * Dodaj
+ *
+ * @param kontakt
+ * @param view
+ * @return
+ */
 fun dodaj(kontakt: kontakt, view: View): Int { //Funkcja ktora wykonuje dodanie do pliku danego kontaktu
     val kontakty = mutableListOf<kontakt>() //definicja listy tymczasowej (buforu z pliku)
     val sciezka = view.context.filesDir.toString()+"/kontakty.txt" //sciezka do pliku
@@ -47,7 +57,18 @@ fun dodaj(kontakt: kontakt, view: View): Int { //Funkcja ktora wykonuje dodanie 
         return 2 //zwrocenie informacji o niepowodzeniu dodania z powodu duplikatu
     }
 }
-fun sluchacz(imie: EditText, nazwisko:EditText, telefon: EditText, email: EditText,knefel: Button): View.OnClickListener { //Sluchacz na przycisk
+
+/**
+ * Sluchacz
+ *
+ * @param imie
+ * @param nazwisko
+ * @param telefon
+ * @param email
+ * @param knefel
+ * @return
+ */
+fun sluchacz(imie: EditText, nazwisko:EditText, telefon: EditText, email: EditText, knefel: Button): View.OnClickListener { //Sluchacz na przycisk
         return View.OnClickListener {
             val dane = zbierzdane(imie,nazwisko,telefon, email) //Pobranie danych
             imie.setText("")
@@ -85,6 +106,15 @@ fun sluchacz(imie: EditText, nazwisko:EditText, telefon: EditText, email: EditTe
         }
     }
 
+/**
+ * Sprawdz
+ *
+ * @param imie
+ * @param nazwisko
+ * @param telefon
+ * @param email
+ * @return
+ */
 fun sprawdz(imie: String, nazwisko: String, telefon:String, email:String): Boolean { //Funkcja do sprawdzania danych
     if(imie.isEmpty() || nazwisko.isEmpty() ) { //Sprawdzenie czy dane sa puste
         return false
@@ -99,6 +129,16 @@ fun sprawdz(imie: String, nazwisko: String, telefon:String, email:String): Boole
         true
     }
 }
+
+/**
+ * Zbierzdane
+ *
+ * @param imie
+ * @param nazwisko
+ * @param telefon
+ * @param email
+ * @return
+ */
 fun zbierzdane(imie: EditText, nazwisko: EditText, telefon: EditText, email: EditText): kontakt? { //Funkcja do zbierania danych
     val imied = imie.text.toString() //Pobranie danych imienia
     val nazwiskod = nazwisko.text.toString() //Pobranie danych nazwiska
@@ -115,6 +155,13 @@ fun zbierzdane(imie: EditText, nazwisko: EditText, telefon: EditText, email: Edi
     }
     return kontakt(imied, nazwiskod, telefond, emaild) //Zwracanie danych
 }
+
+/**
+ * Cyfra
+ *
+ * @param button
+ * @param text
+ */
 @SuppressLint("SetTextI18n")
 fun cyfra(button: List<Button>, text: TextView) { //Sluchacz na cyfry wybierania
     button.forEach{ it ->
@@ -125,6 +172,14 @@ fun cyfra(button: List<Button>, text: TextView) { //Sluchacz na cyfry wybierania
         }
     }
 }
+
+/**
+ * Dzwon
+ *
+ * @param button
+ * @param text
+ * @param view
+ */
 fun dzwon(button: ImageButton, text: String, view: View?) { //Funkcja do zadzwonienia na numer
     if (view != null) {
         if (text == "") {
@@ -159,6 +214,12 @@ fun dzwon(button: ImageButton, text: String, view: View?) { //Funkcja do zadzwon
 
 }
 
+/**
+ * Szukanie
+ *
+ * @param button
+ * @param text
+ */
 fun szukanie(button: ImageButton, text: EditText) {
     button.setOnClickListener {
         if(text.isVisible) {
@@ -177,6 +238,14 @@ fun szukanie(button: ImageButton, text: EditText) {
         }
     }
 }
+
+/**
+ * Edytuj
+ *
+ * @param kontakt
+ * @param kontaktE
+ * @param view
+ */
 fun edytuj (kontakt: kontakt?, kontaktE :kontakt, view: View) {
     val kontakty = wczytajkontakty(view.context.filesDir.toString()+"/kontakty.txt")
     if (kontakt != null) {

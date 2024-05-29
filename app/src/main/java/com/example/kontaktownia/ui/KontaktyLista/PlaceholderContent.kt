@@ -3,10 +3,8 @@ package com.example.kontaktownia.ui.KontaktyLista
 import java.io.File
 
 /**
- * Helper class for providing sample content for user interfaces created by
- * Android template wizards.
  *
- * TODO: Replace all uses of this class before publishing your app.
+ * Obiekt odpowiedzialny za wczytywanie kontaktow z pliku
  */
 object PlaceholderContent {
 
@@ -52,16 +50,7 @@ object PlaceholderContent {
         val set:MutableSet<kontakt> = kontakty.toMutableSet().toSortedSet(compareBy { it.imie }) //Konwersja listy kontaktow na set (Dzieki temu usuwamy duplikaty)
         return set.toMutableList() //Konwersja seta na liste
     }
-    fun wczytajjeden(kontakt: kontakt, sciezka: String) : kontakt{
-        val kontakty = wczytajkontakty(sciezka)
-        if (kontakty.contains(kontakt)) {
-            return kontakty.find { it == kontakt }!!
-        }
-        else {
-            return kontakt
-        }
 
-    }
 
 
 

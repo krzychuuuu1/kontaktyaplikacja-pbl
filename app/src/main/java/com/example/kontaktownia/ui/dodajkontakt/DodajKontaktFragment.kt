@@ -11,12 +11,14 @@ import androidx.fragment.app.Fragment
 import com.example.kontaktownia.databinding.FragmentDodajBinding
 import com.example.kontaktownia.sluchacz
 
+/**
+ * Dodaj kontakt fragment
+ *
+ * @constructor Utworz pusty fragment DOdawania kontaktu
+ */
 class DodajKontaktFragment : Fragment(){
 
     private var _binding: FragmentDodajBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -27,12 +29,14 @@ class DodajKontaktFragment : Fragment(){
 
 
         _binding = FragmentDodajBinding.inflate(inflater, container, false)
+        //definicja zmiennych (w celu skrocenia zapisu)
         val root: View = binding.root
         val imie: EditText = binding.imie
         val nazwisko: EditText = binding.nazwisko
         val telefon: EditText = binding.telefon
         val knefel: Button = binding.dodajkontakt
         val email: EditText = binding.email
+        //Dodanie sluchacza do przycisku dodajkontakt
         knefel.setOnClickListener(sluchacz(imie,nazwisko,telefon,email,knefel))
 
 
