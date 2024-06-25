@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
@@ -27,6 +28,9 @@ class Edycja : Fragment() {
     private var telefon: String? = null
     private var email: String? = null
     private var kontakt: PlaceholderContent.kontakt? = null
+    private var miasto: String? = null
+    private var ulica: String? = null
+    private var praca: Boolean = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,9 +41,14 @@ class Edycja : Fragment() {
             nazwisko = it.getString("nazwisko")
             telefon = it.getString("telefon")
             email = it.getString("email")
+            miasto = it.getString("miasto")
+            ulica = it.getString("ulica")
+            praca = it.getBoolean("praca")
+            println("Dane kontaktowe: $imie $nazwisko $telefon $email $miasto $ulica $praca")
+
             //utworzenie obiektu kontaktu
             if (!(imie.isNullOrEmpty() || nazwisko.isNullOrEmpty() || telefon.isNullOrEmpty() || email.isNullOrEmpty())) {
-                kontakt = PlaceholderContent.kontakt(imie!!, nazwisko!!, telefon!!, email!!)
+                kontakt = PlaceholderContent.kontakt(imie!!, nazwisko!!, telefon!!, email!!, miasto!!, ulica!!, praca)
             }
 
         }
@@ -56,14 +65,21 @@ class Edycja : Fragment() {
         val telefonV: EditText = view.findViewById(R.id.telefonE)
         val emailV: EditText = view.findViewById(R.id.emailE)
         val edytuj: Button = view.findViewById(R.id.edytujkontakt)
+        val miastoV: EditText = view.findViewById(R.id.miastoE)
+        val ulicaV: EditText = view.findViewById(R.id.ulicaE)
+        val pracaV: CheckBox = view.findViewById(R.id.pracaE)
         //ustawienie pól do edycji na wartości z bazy danych
         imieV.setText(imie)
         nazwiskoV.setText(nazwisko)
         telefonV.setText(telefon)
         emailV.setText(email)
+        miastoV.setText(miasto)
+        ulicaV.setText(ulica)
+        pracaV.isChecked = praca
 
         edytuj.setOnClickListener {
-            val dane = zbierzdane(imieV, nazwiskoV, telefonV, emailV)
+            val pracachecked = pracaV.isChecked
+            val dane = zbierzdane(imieV, nazwiskoV, telefonV, emailV, miastoV, ulicaV, pracaV)
 
 
             if (dane != null) {
@@ -75,6 +91,9 @@ class Edycja : Fragment() {
                 bundle.putString("nazwisko", dane.nazwisko)
                 bundle.putString("telefon", dane.telefon)
                 bundle.putString("email", dane.email)
+                bundle.putString("miasto", dane.miasto)
+                bundle.putString("ulica", dane.ulica)
+                bundle.putBoolean("praca", pracachecked)
                 //powrot do podgladu kontaktu
                 edytuj.findNavController().navigate(R.id.action_edycja_to_podgladKontaktu,bundle)
             } else {

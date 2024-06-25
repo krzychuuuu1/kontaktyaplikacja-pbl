@@ -61,7 +61,7 @@ class ItemFragment : Fragment() {
         return view
     }
 
-    companion object { //szczerze nie wiem po co to ale jak tego nie ma to umiera
+    companion object {
         const val ARG_COLUMN_COUNT = "column-count"
 
     }

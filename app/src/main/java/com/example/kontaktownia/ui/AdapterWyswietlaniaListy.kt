@@ -48,7 +48,7 @@ class AdapterWyswietlaniaListy(
                 notifyDataSetChanged()
                 //Gdy nie ma takiego kontaktu wyswietlenie informacji ze nie ma takiego kontaktu
                 if (wartosci.isEmpty()) {
-                    wartosci.add(kontakt("Brak kontaktow z takimi danymi", "", "", ""))
+                    wartosci.add(kontakt("Brak kontaktow z takimi danymi", "", "", "", "", "", false))
                 }
             }
         }
@@ -81,6 +81,10 @@ class AdapterWyswietlaniaListy(
                 bundle.putString("nazwisko", item.nazwisko)
                 bundle.putString("telefon", item.telefon)
                 bundle.putString("email", item.email)
+                bundle.putString("ulica", item.ulica)
+                bundle.putString("miasto", item.miasto)
+                bundle.putBoolean("praca", item.praca)
+
                 //przekierowanie do fragmentu edycji z przekazaniem wartosci kliknietego kontaktu
                 holder.itemView.findNavController().navigate(R.id.action_navigation_kontakty_to_podgladKontaktu, bundle)
 

@@ -8,7 +8,7 @@ import java.io.File
  */
 object PlaceholderContent {
 
-    data class kontakt(val imie: String, val nazwisko: String, val telefon: String, val email: String)
+    data class kontakt(val imie: String, val nazwisko: String, val telefon: String, val email: String, val miasto: String, val ulica: String, val praca: Boolean)
 
     fun wczytajkontakty(sciezka: String): MutableList<kontakt> { //Funkcja wczytuje kontakty z pliku
         val plik = File(sciezka) //Otwieranie pliku
@@ -36,9 +36,16 @@ object PlaceholderContent {
                 println("jestem tu")
 
                 plik.forEachLine { //Wczytywanie linijek z pliku
-                    val (imie, nazwisko, telefon, email) = it.split(",", limit = 4)
-                    kontakty.add(kontakt(imie, nazwisko, telefon, email)) //Dodawanie kontaktow do listy
-                    println("${imie}, ${nazwisko}, ${telefon}, $email") //Wypisanie kontaktow do konsoli
+                    val czesci = it.split(",", limit = 7)
+                    val imie = czesci.getOrNull(0) ?: ""
+                    val nazwisko = czesci.getOrNull(1) ?: ""
+                    val telefon = czesci.getOrNull(2) ?: ""
+                    val email = czesci.getOrNull(3) ?: ""
+                    val miasto = czesci.getOrNull(4) ?: ""
+                    val ulica = czesci.getOrNull(5) ?: ""
+                    val praca = czesci.getOrNull(6)?.toBoolean() ?: false
+                    kontakty.add(kontakt(imie, nazwisko, telefon, email, miasto, ulica, praca)) //Dodawanie kontaktow do listy
+                    println("${imie}, ${nazwisko}, ${telefon}, $email, $miasto, $ulica, $praca") //Wypisanie kontaktow do konsoli
                 }
 
             }

@@ -31,6 +31,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //TODO https://developer.android.com/training/permissions/requesting
+
+
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -42,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         val textView: EditText= binding.wyszukiwanie
         szukanie(ImageButton, textView)
         val powrotV: ImageButton = binding.back
-        //ustawienie sluchacz przyciska powrotu
+        //ustawienie sluchacza przyciska powrotu
         powrotV.setOnClickListener {
             val navController = findNavController(R.id.nav_host_fragment_activity_main)
             navController.navigate(R.id.action_podgladKontaktu_to_navigation_kontakty)

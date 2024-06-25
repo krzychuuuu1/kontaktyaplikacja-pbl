@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 //import androidx.lifecycle.ViewModelProvider
@@ -36,8 +37,11 @@ class DodajKontaktFragment : Fragment(){
         val telefon: EditText = binding.telefon
         val knefel: Button = binding.dodajkontakt
         val email: EditText = binding.email
+        val miasto: EditText = binding.miasto
+        val ulica: EditText = binding.ulica
+        val praca: CheckBox = binding.praca
         //Dodanie sluchacza do przycisku dodajkontakt
-        knefel.setOnClickListener(sluchacz(imie,nazwisko,telefon,email,knefel))
+        knefel.setOnClickListener(sluchacz(imie,nazwisko,telefon,email,knefel,miasto,ulica,praca))
 
 
 

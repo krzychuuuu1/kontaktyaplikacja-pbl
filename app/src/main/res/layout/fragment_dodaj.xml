@@ -87,6 +87,47 @@
                 android:hint="@string/dodaj_kontakt_e_mail"
                 android:inputType="textEmailAddress" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/miasto"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="101dp"
+                android:layout_marginEnd="100dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="Miasto"
+                 />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/ulica"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="101dp"
+                android:layout_marginEnd="100dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="Ulica"
+                 />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/praca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="135dp"
+            android:layout_marginEnd="100dp"
+            android:text="Kontakt z Pracy?"
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/dodajkontakt"
